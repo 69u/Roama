@@ -8,24 +8,24 @@ import Button from '@components/Button';
 
 import styles from '@styles/Home.module.scss';
 
-const DEFAULT_CENTER = [38.907132, -77.036546]
+const DEFAULT_CENTER = [-31.9523, 115.8613]
 
 export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Next.js Leaflet Starter</title>
-        <meta name="description" content="Create mapping apps with Next.js Leaflet Starter" />
+        <title>Roama 🦘</title>
+        <meta name="description" content="Create mapping apps with Roama 🦘" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Section>
         <Container>
-          <h1 className={styles.title}>
-            Next.js Leaflet Starter
-          </h1>
+         {/* <h1 className={styles.title}>
+            Roama 🦘
+          </h1> */}
 
-          <Map className={styles.homeMap} width="800" height="400" center={DEFAULT_CENTER} zoom={12}>
+          <Map className={styles.homeMap} center={DEFAULT_CENTER} zoom={12}>
             {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer
@@ -41,12 +41,12 @@ export default function Home() {
             )}
           </Map>
 
-          <p className={styles.description}>
+          {/*<p className={styles.description}>
             <code className={styles.code}>yarn create next-app -e https://github.com/colbyfayock/next-leaflet-starter</code>
-          </p>
+            </p> */}
 
           <p className={styles.view}>
-            <Button href="https://github.com/colbyfayock/next-leaflet-starter">Vew on GitHub</Button>
+            <Button href="https://github.com/69u/Roama">Vew on GitHub</Button>
           </p>
         </Container>
       </Section>
