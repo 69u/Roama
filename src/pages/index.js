@@ -1,14 +1,16 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+
+import { useState, useEffect } from "react";
 
 import Layout from '@components/Layout';
 import Section from '@components/Section';
 import Container from '@components/Container';
 import Map from '@components/Map';
 import Button from '@components/Button';
+const LocationButton = dynamic(() => import('@components/LocationButton'), { ssr: false });
 
-import styles from '@styles/Home.module.scss';
-
-const DEFAULT_CENTER = [-31.9523, 115.8613]
+const DEFAULT_CENTER = [-31.9523, 115.8613];
 
 export default function Home() {
   return (
@@ -21,35 +23,30 @@ export default function Home() {
 
       <Section>
         <Container>
-         {/* <h1 className={styles.title}>
-            Roama 🦘
-          </h1> */}
+          <div className="flex-1">
+            <Map className="w-[95vw] mx-auto" center={DEFAULT_CENTER} zoom={12}>
+              {({ TileLayer, Marker, Popup }) => (
+                <>
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                  />
+                  <Marker position={DEFAULT_CENTER}>
+                    <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                  </Marker>
+                  <LocationButton />
+                </>
+              )}
+            </Map>
+          </div>
 
-          <Map className={styles.homeMap} center={DEFAULT_CENTER} zoom={12}>
-            {({ TileLayer, Marker, Popup }) => (
-              <>
-                <TileLayer
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                />
-                <Marker position={DEFAULT_CENTER}>
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
-                </Marker>
-              </>
-            )}
-          </Map>
-
-          {/*<p className={styles.description}>
-            <code className={styles.code}>yarn create next-app -e https://github.com/colbyfayock/next-leaflet-starter</code>
-            </p> */}
-
-          <p className={styles.view}>
-            <Button href="https://github.com/69u/Roama">Vew on GitHub</Button>
-          </p>
+          <div className="mt-8 text-center">
+            <Button href="https://github.com/69u/Roama.git">View on GitHub</Button>
+          </div>
         </Container>
       </Section>
     </Layout>
-  )
+  );
 }
